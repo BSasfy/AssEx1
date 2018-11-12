@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class CustomerDetails {
+
+	String customerName;
+	double startingBalance;
+	int balancePence;
+	
+	public void setAccount() {
+		
+		Scanner s = new Scanner(System.in);
+		
+		try {
+			System.out.println("Please enter the customer name:");
+			customerName = s.nextLine();
+			
+			System.out.println("Please enter the starting balance:");
+			startingBalance = s.nextDouble() * 100;
+			balancePence = (int) startingBalance;
+			
+			System.out.printf("Welcome " + customerName + "! Your balance is £%.2f.",(double) balancePence / 100);
+			
+		}catch(Exception e) {
+			System.out.println("Value entered in the wrong format. Please start again!");
+			s.nextLine(); //This will allow the User to enter the customerName again as Scanner s will be empty.
+			setAccount();
+		}
+	}
+
+	public int getStartingBalancePence() {
+		return balancePence;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+	
+}
