@@ -1,0 +1,51 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class CustomerAccount {
+		
+	
+	
+	public static void main(String[] args) {
+		
+		int balance;
+		String fileName = "statement.txt";
+				
+		CustomerDetails customerAccount = new CustomerDetails();
+		CustomerPurchase wine = new CustomerPurchase();
+		
+		
+		customerAccount.setAccount();
+		try {
+			FileWriter f = new FileWriter(fileName, true);
+		
+		while (true) {
+			
+		wine.buyingWine();
+		
+		if (wine.getWineName().equals("")) {
+			break;
+		}
+				
+		balance = customerAccount.getStartingBalancePence() + wine.getTotalCost();
+		
+		System.out.printf (customerAccount.getCustomerName() + ", your balance is %.2f.", (double) balance/100);
+		
+		
+						
+			f.write(System.lineSeparator()); //new line in statement.txt, important when appending.
+			f.write(String.format(customerAccount.getCustomerName() + ". Your balance is £%.2f.",(double) balance/100));
+			f.write(System.lineSeparator()); //new line in statement.txt
+			f.write(String.format(wine.getWineName() + " (£%.2f), " + wine.wineQuantity + " units, total cost = £%.2f, new balance = £%.2f", (double) wine.getWinePrice()/100, (double) wine.totalCost/100, (double) balance/100));
+		}
+		
+		f.close();
+		
+		} catch (IOException e) {
+					System.out.println("File not found!");
+				}
+		
+		
+		
+	}
+
+}
