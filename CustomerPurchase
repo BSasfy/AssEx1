@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class CustomerPurchase extends CustomerDetails {
+	
+	String wineName; //instance variables
+	double winePrice;
+	int wineQuantity;
+	int totalCost;
+	int winePence;
+	
+	
+
+	public void buyingWine() {
+		
+		Scanner s = new Scanner(System.in); 
+		
+	
+			
+		System.out.println("\nPlease enter the wine name:");
+		wineName = s.nextLine();
+							
+		System.out.println ("Please enter the wine quantity (use negative values for return):");
+		wineQuantity = s.nextInt();
+			
+		System.out.println("Please enter the price per unit:");
+		winePrice = Math.abs(s.nextDouble()*100);
+			
+		totalCost = (int) winePrice * wineQuantity;
+			
+			if (wineQuantity<0) {
+				totalCost = (int) (totalCost*0.8); 				
+			}
+	}
+	
+	public int getTotalCost() {
+		return totalCost;
+	}
+
+	public String getWineName() {
+		return wineName;
+	}
+	
+	public int getWinePrice() {
+		return (int) winePrice;
+	}
+}
